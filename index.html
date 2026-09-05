@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Westberg Family Tree</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <h1>Westberg Family Tree</h1>
+
+<!-- GLOBAL TREE STYLE DROPDOWN -->
+<div class="toolbar">
+    <label for="treeStyle"><strong>Tree Style:</strong></label>
+    <select id="treeStyle">
+        <option value="horizontal">Horizontal Pedigree</option>
+        <option value="vertical">Vertical Generational</option>
+        <option value="accordion">Accordion Tree</option>
+        <option value="multiroot">Side-by-Side Multi-Root</option>
+        <option value="radial">Radial Tree</option>
+        <option value="layered">Layered Tree</option>
+    </select>
+</div>
 
 <!-- SEARCH -->
 <div class="toolbar">
@@ -25,25 +40,31 @@
 <h2>Ancestry Views</h2>
 
 <div class="toolbar">
+    <button id="ancestorTree">Ancestor Tree</button>
     <button id="ancestorList">Ancestor List</button>
-    <button id="generationView">Generational View</button>
-    <button id="surnameView">Surname View</button>
-    <button id="descendantView">Descendant View</button>
 </div>
 
 <div class="toolbar">
-    <button id="splitView">Paternal / Maternal Split</button>
-    <button id="fanChartView">Fan Chart</button>
-    <button id="timelineView">Timeline View</button>
-    <button id="printableReport">Printable Report</button>
+    <button id="generationTree">Generational Tree</button>
+    <button id="generationList">Generational List</button>
+</div>
+
+<div class="toolbar">
+    <button id="surnameTree">Surname Tree</button>
+    <button id="surnameList">Surname List</button>
+</div>
+
+<div class="toolbar">
+    <button id="descendantTree">Descendant Tree</button>
+    <button id="descendantList">Descendant List</button>
 </div>
 
 <!-- BRANCH FILTERS -->
 <h2>Branch Filters</h2>
 
 <div class="toolbar">
-    <select id="branchFilter">
-        <option value="">Filter Tree by Branch</option>
+    <select id="branchTreeView">
+        <option value="">Branch Tree</option>
         <option value="Westberg">Westberg</option>
         <option value="Hornstrom">Hornstrom</option>
         <option value="LaFever">LaFever</option>
@@ -66,8 +87,8 @@
         <option value="O'Connell">O'Connell</option>
     </select>
 
-    <select id="branchOnlyView">
-        <option value="">Branch‑Only List View</option>
+    <select id="branchListView">
+        <option value="">Branch List</option>
         <option value="Westberg">Westberg</option>
         <option value="Hornstrom">Hornstrom</option>
         <option value="LaFever">LaFever</option>
