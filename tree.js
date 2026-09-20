@@ -12,13 +12,9 @@ function display(branch) {
 
   const byId = Object.fromEntries(people.map(p => [p.id, p]));
 
-  // Determine root (branch root or focus mode)
   const rootId = focusPerson || roots[branch];
   const root = byId[rootId];
 
-  /* ----------------------------------------------------------
-     VERTICAL FAMILY VIEW
-  ---------------------------------------------------------- */
   function createVerticalNode(person) {
     const node = document.createElement("div");
     node.className = "vertical-node";
@@ -33,7 +29,6 @@ function display(branch) {
       <div class="person-details">${person.details || ""}</div>
     `;
 
-    // Focus mode
     personBox.addEventListener("click", () => {
       focusPerson = person.id;
       display(currentBranch);
@@ -41,7 +36,6 @@ function display(branch) {
 
     block.appendChild(personBox);
 
-    // SPOUSES
     if (person.spouses?.length > 0) {
       const spouseContainer = document.createElement("div");
       spouseContainer.className = "spouse-container";
@@ -61,7 +55,6 @@ function display(branch) {
 
     node.appendChild(block);
 
-    // CHILDREN
     if (person.children?.length > 0) {
       node.classList.add("has-children");
 
@@ -81,9 +74,6 @@ function display(branch) {
     return node;
   }
 
-  /* ----------------------------------------------------------
-     HORIZONTAL PEDIGREE VIEW
-  ---------------------------------------------------------- */
   function createPedigreeNode(person) {
     const node = document.createElement("div");
     node.className = "pedigree-node";
@@ -102,7 +92,6 @@ function display(branch) {
 
     node.appendChild(personBox);
 
-    // Parents
     if (person.parents?.length > 0) {
       const parentContainer = document.createElement("div");
       parentContainer.className = "pedigree-parents";
@@ -117,7 +106,6 @@ function display(branch) {
       node.appendChild(parentContainer);
     }
 
-    // Children
     if (person.children?.length > 0) {
       const childContainer = document.createElement("div");
       childContainer.className = "pedigree-children";
@@ -135,9 +123,6 @@ function display(branch) {
     return node;
   }
 
-  /* ----------------------------------------------------------
-     RENDER TREE
-  ---------------------------------------------------------- */
   if (currentLayout === "vertical") {
     container.appendChild(createVerticalNode(root));
   } else {
@@ -145,11 +130,6 @@ function display(branch) {
   }
 }
 
-/* ----------------------------------------------------------
-   BUTTONS
----------------------------------------------------------- */
-
-// Branch buttons
 document.querySelectorAll("#branch-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     focusPerson = null;
@@ -157,7 +137,6 @@ document.querySelectorAll("#branch-menu button").forEach(btn => {
   });
 });
 
-// Layout buttons
 document.querySelectorAll("#layout-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     currentLayout = btn.dataset.layout;
@@ -165,11 +144,9 @@ document.querySelectorAll("#layout-menu button").forEach(btn => {
   });
 });
 
-// Clear focus
 document.getElementById("clear-focus").addEventListener("click", () => {
   focusPerson = null;
   display(currentBranch);
 });
 
-// Initial render
 display("All");
