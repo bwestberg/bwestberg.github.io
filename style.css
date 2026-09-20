@@ -60,8 +60,8 @@ h1 {
   position: relative;
 }
 
-/* Vertical line from parent to children */
-.node::after {
+/* Vertical line only when there are children */
+.node.has-children::after {
   content: "";
   position: absolute;
   top: 40px;
