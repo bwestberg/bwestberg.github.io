@@ -16,12 +16,14 @@ function display(branch) {
 
   const byId = Object.fromEntries(people.map(p => [p.id, p]));
 
-  /* -----------------------------
-     VERTICAL FAMILY VIEW
-  ----------------------------- */
+  // VERTICAL FAMILY VIEW
   function createVerticalNode(person) {
     const node = document.createElement("div");
     node.className = "vertical-node";
+
+    // PERSON BLOCK (anchor for lines)
+    const personBlock = document.createElement("div");
+    personBlock.className = "person-block";
 
     const personBox = document.createElement("div");
     personBox.className = "person";
@@ -35,8 +37,9 @@ function display(branch) {
       display(currentBranch);
     });
 
-    node.appendChild(personBox);
+    personBlock.appendChild(personBox);
 
+    // SPOUSES inside same block
     if (person.spouses?.length > 0) {
       const spouseContainer = document.createElement("div");
       spouseContainer.className = "spouse-container";
@@ -51,9 +54,12 @@ function display(branch) {
         }
       });
 
-      node.appendChild(spouseContainer);
+      personBlock.appendChild(spouseContainer);
     }
 
+    node.appendChild(personBlock);
+
+    // CHILDREN
     if (person.children?.length > 0) {
       node.classList.add("has-children");
 
@@ -73,9 +79,7 @@ function display(branch) {
     return node;
   }
 
-  /* -----------------------------
-     HORIZONTAL PEDIGREE VIEW
-  ----------------------------- */
+  // HORIZONTAL PEDIGREE VIEW (unchanged structure)
   function createPedigreeNode(person) {
     const node = document.createElement("div");
     node.className = "pedigree-node";
@@ -125,11 +129,8 @@ function display(branch) {
     return node;
   }
 
-  /* -----------------------------
-     ROOT SELECTION (FOCUS MODE)
-  ----------------------------- */
+  // ROOTS (focus mode)
   let roots;
-
   if (focusPerson) {
     roots = [byId[focusPerson]];
   } else {
@@ -145,7 +146,7 @@ function display(branch) {
   });
 }
 
-/* Branch filter */
+// Branch filter
 document.querySelectorAll("#branch-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     focusPerson = null;
@@ -153,7 +154,7 @@ document.querySelectorAll("#branch-menu button").forEach(btn => {
   });
 });
 
-/* Layout toggle */
+// Layout toggle
 document.querySelectorAll("#layout-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     currentLayout = btn.dataset.layout;
@@ -161,11 +162,11 @@ document.querySelectorAll("#layout-menu button").forEach(btn => {
   });
 });
 
-/* Clear focus */
+// Clear focus
 document.getElementById("clear-focus").addEventListener("click", () => {
   focusPerson = null;
   display("All");
 });
 
-/* Default */
+// Default
 display("All");
