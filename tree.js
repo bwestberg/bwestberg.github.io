@@ -1,6 +1,7 @@
 import { people } from "./data/master.js";
 
 const container = document.getElementById("tree");
+const menu = document.getElementById("branch-menu");
 
 function renderPerson(person) {
   const div = document.createElement("div");
@@ -15,4 +16,23 @@ function renderPerson(person) {
   return div;
 }
 
-people.forEach(p => container.appendChild(renderPerson(p)));
+function display(branch) {
+  container.innerHTML = "";
+
+  const filtered =
+    branch === "All"
+      ? people
+      : people.filter(p => p.branch === branch);
+
+  filtered.forEach(p => container.appendChild(renderPerson(p)));
+}
+
+// default view
+display("All");
+
+// menu click handler
+menu.addEventListener("click", e => {
+  if (e.target.dataset.branch) {
+    display(e.target.dataset.branch);
+  }
+});
