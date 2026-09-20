@@ -70,5 +70,41 @@ export const lakin = [
     parents: ["carol-sawyer", "roger-lakin"],
     spouses: [],
     children: []
+  },
+  {
+    id: "jim-lakin",
+    name: "Jim Lakin",
+    branch: "Lakin",
+    details: "",
+    parents: ["harold-lakin", "betty-lakin"],
+    spouses: [],
+    children: []
+  },
+  {
+    id: "douglas-lakin",
+    name: "Douglas Lakin",
+    branch: "Lakin",
+    details: "",
+    parents: ["harold-lakin", "betty-lakin"],
+    spouses: [],
+    children: []
+  },
+  {
+    id: "kenneth-lakin",
+    name: "Kenneth Lakin",
+    branch: "Lakin",
+    details: "",
+    parents: ["harold-lakin", "betty-lakin"],
+    spouses: [],
+    children: []
+  },
+  {
+    id: "barbara-lakin",
+    name: "Barbara Lakin",
+    branch: "Lakin",
+    details: "",
+    parents: ["harold-lakin", "betty-lakin"],
+    spouses: [],
+    children: []
   }
 ];

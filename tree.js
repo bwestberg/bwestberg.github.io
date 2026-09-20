@@ -43,9 +43,11 @@ function display(branch) {
       ? roots[branch]
       : [roots[branch]];
 
-  function createVerticalNode(person) {
+  function createVerticalNode(person, path = new Set()) {
     const node = document.createElement("div");
     node.className = "vertical-node";
+    const nextPath = new Set(path);
+    nextPath.add(person.id);
 
     const block = document.createElement("div");
     block.className = "person-block";
@@ -91,8 +93,8 @@ function display(branch) {
 
       person.children.forEach(childId => {
         const child = byId[childId];
-        if (child) {
-          childrenContainer.appendChild(createVerticalNode(child));
+        if (child && !nextPath.has(child.id)) {
+          childrenContainer.appendChild(createVerticalNode(child, nextPath));
         }
       });
 
@@ -102,9 +104,11 @@ function display(branch) {
     return node;
   }
 
-  function createPedigreeNode(person) {
+  function createPedigreeNode(person, path = new Set()) {
     const node = document.createElement("div");
     node.className = "pedigree-node";
+    const nextPath = new Set(path);
+    nextPath.add(person.id);
 
     const personBox = document.createElement("div");
     personBox.className = "person";
@@ -120,14 +124,31 @@ function display(branch) {
 
     node.appendChild(personBox);
 
+    if (person.spouses?.length > 0) {
+      const spouseContainer = document.createElement("div");
+      spouseContainer.className = "spouse-container";
+
+      person.spouses.forEach(spouseId => {
+        const spouse = byId[spouseId];
+        if (spouse) {
+          const spouseBox = document.createElement("div");
+          spouseBox.className = "spouse";
+          spouseBox.textContent = spouse.name;
+          spouseContainer.appendChild(spouseBox);
+        }
+      });
+
+      node.appendChild(spouseContainer);
+    }
+
     if (person.parents?.length > 0) {
       const parentContainer = document.createElement("div");
       parentContainer.className = "pedigree-parents";
 
       person.parents.forEach(parentId => {
         const parent = byId[parentId];
-        if (parent) {
-          parentContainer.appendChild(createPedigreeNode(parent));
+        if (parent && !nextPath.has(parent.id)) {
+          parentContainer.appendChild(createPedigreeNode(parent, nextPath));
         }
       });
 
@@ -140,8 +161,8 @@ function display(branch) {
 
       person.children.forEach(childId => {
         const child = byId[childId];
-        if (child) {
-          childContainer.appendChild(createPedigreeNode(child));
+        if (child && !nextPath.has(child.id)) {
+          childContainer.appendChild(createPedigreeNode(child, nextPath));
         }
       });
 

@@ -88,5 +88,32 @@ export const westberg = [
     parents: ["brent-westberg", "cheri-lakin"],
     spouses: [],
     children: []
+  },
+  {
+    id: "roger-westberg",
+    name: "Roger Westberg",
+    branch: "Westberg",
+    details: "",
+    parents: ["axel-westberg", "myrtle-westberg"],
+    spouses: [],
+    children: []
+  },
+  {
+    id: "darren-westberg",
+    name: "Darren Westberg",
+    branch: "Westberg",
+    details: "",
+    parents: ["ron-westberg", "sandra-losie"],
+    spouses: [],
+    children: []
+  },
+  {
+    id: "kyle-westberg",
+    name: "Kyle Westberg",
+    branch: "Westberg",
+    details: "",
+    parents: ["ron-westberg", "sandra-losie"],
+    spouses: [],
+    children: []
   }
 ];
