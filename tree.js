@@ -1,8 +1,8 @@
 import { people, roots } from "./data/master.js";
 
 let currentLayout = "vertical";
-let focusPerson = null;
 let currentBranch = "All";
+let focusPerson = null;
 
 function display(branch) {
   currentBranch = branch;
@@ -12,18 +12,17 @@ function display(branch) {
 
   const byId = Object.fromEntries(people.map(p => [p.id, p]));
 
-  // Determine which person is the root
+  // Determine root (branch root or focus mode)
   const rootId = focusPerson || roots[branch];
   const root = byId[rootId];
 
   /* ----------------------------------------------------------
-     VERTICAL FAMILY VIEW (Modern)
+     VERTICAL FAMILY VIEW
   ---------------------------------------------------------- */
   function createVerticalNode(person) {
     const node = document.createElement("div");
     node.className = "vertical-node";
 
-    // PERSON BLOCK (anchor for connectors)
     const block = document.createElement("div");
     block.className = "person-block";
 
@@ -34,7 +33,7 @@ function display(branch) {
       <div class="person-details">${person.details || ""}</div>
     `;
 
-    // Focus mode: clicking a person centers the tree on them
+    // Focus mode
     personBox.addEventListener("click", () => {
       focusPerson = person.id;
       display(currentBranch);
@@ -42,7 +41,7 @@ function display(branch) {
 
     block.appendChild(personBox);
 
-    // SPOUSES (modern style)
+    // SPOUSES
     if (person.spouses?.length > 0) {
       const spouseContainer = document.createElement("div");
       spouseContainer.className = "spouse-container";
@@ -83,7 +82,7 @@ function display(branch) {
   }
 
   /* ----------------------------------------------------------
-     HORIZONTAL PEDIGREE VIEW (Modern)
+     HORIZONTAL PEDIGREE VIEW
   ---------------------------------------------------------- */
   function createPedigreeNode(person) {
     const node = document.createElement("div");
@@ -103,7 +102,7 @@ function display(branch) {
 
     node.appendChild(personBox);
 
-    // Parents (left)
+    // Parents
     if (person.parents?.length > 0) {
       const parentContainer = document.createElement("div");
       parentContainer.className = "pedigree-parents";
@@ -118,7 +117,7 @@ function display(branch) {
       node.appendChild(parentContainer);
     }
 
-    // Children (right)
+    // Children
     if (person.children?.length > 0) {
       const childContainer = document.createElement("div");
       childContainer.className = "pedigree-children";
@@ -147,10 +146,10 @@ function display(branch) {
 }
 
 /* ----------------------------------------------------------
-   UI CONTROLS
+   BUTTONS
 ---------------------------------------------------------- */
 
-// Branch filter
+// Branch buttons
 document.querySelectorAll("#branch-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     focusPerson = null;
@@ -158,7 +157,7 @@ document.querySelectorAll("#branch-menu button").forEach(btn => {
   });
 });
 
-// Layout toggle
+// Layout buttons
 document.querySelectorAll("#layout-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     currentLayout = btn.dataset.layout;
@@ -166,7 +165,7 @@ document.querySelectorAll("#layout-menu button").forEach(btn => {
   });
 });
 
-// Clear focus mode
+// Clear focus
 document.getElementById("clear-focus").addEventListener("click", () => {
   focusPerson = null;
   display(currentBranch);
