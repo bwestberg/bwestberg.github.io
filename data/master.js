@@ -12,6 +12,12 @@ export const people = [
 
 // TRUE ROOTS
 export const roots = {
+  All: [
+    "oscar-westberg",
+    "john-wesley-losie",
+    "john-hayes-lakin",
+    "lawrence-sawyer"
+  ],
   Westberg: "oscar-westberg",
   Losie: "john-wesley-losie",
   Sawyer: "lawrence-sawyer",

@@ -37,8 +37,11 @@ function display(branch) {
 
   const byId = Object.fromEntries(people.map(p => [p.id, p]));
 
-  const rootId = focusPerson || roots[branch];
-  const root = byId[rootId];
+  const rootIds = focusPerson
+    ? [focusPerson]
+    : Array.isArray(roots[branch])
+      ? roots[branch]
+      : [roots[branch]];
 
   function createVerticalNode(person) {
     const node = document.createElement("div");
@@ -148,11 +151,19 @@ function display(branch) {
     return node;
   }
 
-  if (currentLayout === "vertical") {
-    container.appendChild(createVerticalNode(root));
-  } else {
-    container.appendChild(createPedigreeNode(root));
-  }
+  rootIds.forEach(rootId => {
+    const root = byId[rootId];
+
+    if (!root) {
+      return;
+    }
+
+    if (currentLayout === "vertical") {
+      container.appendChild(createVerticalNode(root));
+    } else {
+      container.appendChild(createPedigreeNode(root));
+    }
+  });
 
   applyZoom();
 }
