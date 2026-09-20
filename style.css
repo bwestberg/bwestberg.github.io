@@ -1,12 +1,18 @@
+/* ----------------------------------------------------------
+   GLOBAL
+---------------------------------------------------------- */
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f2f4f7;
   padding: 20px;
+  color: #333;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 600;
 }
 
 #layout-menu, #focus-menu, #branch-menu {
@@ -15,17 +21,20 @@ h1 {
 }
 
 button {
-  padding: 8px 14px;
+  padding: 10px 18px;
   margin: 5px;
-  border: 2px solid #444;
-  background: #fff;
-  border-radius: 6px;
+  border: none;
+  background: #ffffff;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.15s ease;
 }
 
 button:hover {
-  background: #ddd;
+  background: #e8ebef;
+  transform: translateY(-2px);
 }
 
 #tree {
@@ -35,94 +44,122 @@ button:hover {
   gap: 40px;
 }
 
-/* PERSON BLOCK */
-.person-block {
-  display: inline-block;
-  position: relative;
-  text-align: center;
-}
+/* ----------------------------------------------------------
+   PERSON CARD (Modern)
+---------------------------------------------------------- */
 
 .person {
-  padding: 8px 12px;
-  background: #fff;
-  border: 2px solid #444;
-  border-radius: 8px;
+  padding: 14px 18px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.10);
   cursor: pointer;
+  min-width: 180px;
+  transition: all 0.15s ease;
+}
+
+.person:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .person-name {
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
 .person-details {
-  font-size: 12px;
-  color: #555;
-  margin-top: 4px;
+  font-size: 13px;
+  color: #666;
 }
 
-/* VERTICAL CONNECTORS */
-.vertical-node {
-  text-align: center;
-  position: relative;
-}
+/* ----------------------------------------------------------
+   SPOUSE BLOCK (Modern)
+---------------------------------------------------------- */
 
-.vertical-node.has-children .person-block::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 2px;
-  height: 20px;
-  background: #444;
-  transform: translateX(-50%);
-}
-
-.children {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 20px;
-  position: relative;
-}
-
-.children::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background: #444;
-}
-
-/* SPOUSE CONNECTOR */
 .spouse-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 16px;
   margin-top: 10px;
   position: relative;
 }
 
 .spouse {
-  padding: 8px 12px;
-  background: #fff;
-  border: 2px solid #444;
-  border-radius: 8px;
+  padding: 10px 14px;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  font-size: 14px;
+  min-width: 140px;
 }
 
+/* Modern small connector nub (NOT a full line) */
 .spouse-container::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: 10%;
-  right: 10%;
+  left: 50%;
+  width: 18px;
   height: 2px;
-  background: #444;
+  background: #999;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
-/* HORIZONTAL PEDIGREE VIEW */
+/* ----------------------------------------------------------
+   VERTICAL TREE CONNECTORS (Modern)
+---------------------------------------------------------- */
+
+.vertical-node {
+  text-align: center;
+  position: relative;
+}
+
+.person-block {
+  display: inline-block;
+  position: relative;
+}
+
+/* Vertical line from person to children */
+.vertical-node.has-children .person-block::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  width: 2px;
+  height: 26px;
+  background: #bbb;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Children container */
+.children {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 26px;
+  position: relative;
+}
+
+/* Horizontal line connecting siblings */
+.children::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: #bbb;
+  border-radius: 2px;
+}
+
+/* ----------------------------------------------------------
+   HORIZONTAL PEDIGREE CONNECTORS (Modern)
+---------------------------------------------------------- */
+
 .pedigree-node {
   display: flex;
   align-items: center;
@@ -150,15 +187,30 @@ button:hover {
   content: "";
   position: absolute;
   top: 50%;
-  width: 40px;
+  width: 32px;
   height: 2px;
-  background: #444;
+  background: #bbb;
+  border-radius: 2px;
 }
 
 .pedigree-parents::after {
-  right: -40px;
+  right: -32px;
 }
 
 .pedigree-children::after {
-  left: -40px;
+  left: -32px;
+}
+
+/* ----------------------------------------------------------
+   COLLAPSE MODE
+---------------------------------------------------------- */
+
+.vertical-node.collapsed > .children,
+.vertical-node.collapsed > .spouse-container {
+  display: none;
+}
+
+.pedigree-node.collapsed > .pedigree-parents,
+.pedigree-node.collapsed > .pedigree-children {
+  display: none;
 }
