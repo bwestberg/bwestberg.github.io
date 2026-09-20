@@ -9,3 +9,11 @@ export const people = [
   ...lakin,
   ...sawyer
 ];
+
+// TRUE ROOTS (your confirmed ancestors)
+export const roots = {
+  Westberg: "oscar-westberg",
+  Losie: "john-wesley-losie",
+  Sawyer: "lawrence-sawyer",
+  Lakin: "daniel-lakin"
+};
