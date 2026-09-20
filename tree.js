@@ -1,4 +1,4 @@
-import { people } from "./data/master.js";
+import { people, roots } from "./data/master.js";
 
 let currentLayout = "vertical";
 let focusPerson = null;
@@ -10,20 +10,21 @@ function display(branch) {
   const container = document.getElementById("tree");
   container.innerHTML = "";
 
-  const filtered = branch === "All"
-    ? people
-    : people.filter(p => p.branch === branch);
-
   const byId = Object.fromEntries(people.map(p => [p.id, p]));
 
+  // Determine root person
+  const rootId = focusPerson || roots[branch];
+  const root = byId[rootId];
+
+  // -----------------------------
   // VERTICAL FAMILY VIEW
+  // -----------------------------
   function createVerticalNode(person) {
     const node = document.createElement("div");
     node.className = "vertical-node";
 
-    // PERSON BLOCK (anchor for lines)
-    const personBlock = document.createElement("div");
-    personBlock.className = "person-block";
+    const block = document.createElement("div");
+    block.className = "person-block";
 
     const personBox = document.createElement("div");
     personBox.className = "person";
@@ -37,9 +38,9 @@ function display(branch) {
       display(currentBranch);
     });
 
-    personBlock.appendChild(personBox);
+    block.appendChild(personBox);
 
-    // SPOUSES inside same block
+    // Spouses
     if (person.spouses?.length > 0) {
       const spouseContainer = document.createElement("div");
       spouseContainer.className = "spouse-container";
@@ -54,12 +55,12 @@ function display(branch) {
         }
       });
 
-      personBlock.appendChild(spouseContainer);
+      block.appendChild(spouseContainer);
     }
 
-    node.appendChild(personBlock);
+    node.appendChild(block);
 
-    // CHILDREN
+    // Children
     if (person.children?.length > 0) {
       node.classList.add("has-children");
 
@@ -79,7 +80,9 @@ function display(branch) {
     return node;
   }
 
-  // HORIZONTAL PEDIGREE VIEW (unchanged structure)
+  // -----------------------------
+  // HORIZONTAL PEDIGREE VIEW
+  // -----------------------------
   function createPedigreeNode(person) {
     const node = document.createElement("div");
     node.className = "pedigree-node";
@@ -98,6 +101,7 @@ function display(branch) {
 
     node.appendChild(personBox);
 
+    // Parents
     if (person.parents?.length > 0) {
       const parentContainer = document.createElement("div");
       parentContainer.className = "pedigree-parents";
@@ -112,6 +116,7 @@ function display(branch) {
       node.appendChild(parentContainer);
     }
 
+    // Children
     if (person.children?.length > 0) {
       const childContainer = document.createElement("div");
       childContainer.className = "pedigree-children";
@@ -129,21 +134,12 @@ function display(branch) {
     return node;
   }
 
-  // ROOTS (focus mode)
-  let roots;
-  if (focusPerson) {
-    roots = [byId[focusPerson]];
+  // Render correct layout
+  if (currentLayout === "vertical") {
+    container.appendChild(createVerticalNode(root));
   } else {
-    roots = filtered.filter(p => !p.parents || p.parents.length === 0);
+    container.appendChild(createPedigreeNode(root));
   }
-
-  roots.forEach(root => {
-    if (currentLayout === "vertical") {
-      container.appendChild(createVerticalNode(root));
-    } else {
-      container.appendChild(createPedigreeNode(root));
-    }
-  });
 }
 
 // Branch filter
@@ -165,7 +161,7 @@ document.querySelectorAll("#layout-menu button").forEach(btn => {
 // Clear focus
 document.getElementById("clear-focus").addEventListener("click", () => {
   focusPerson = null;
-  display("All");
+  display(currentBranch);
 });
 
 // Default
