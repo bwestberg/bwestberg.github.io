@@ -20,8 +20,8 @@ function display(branch) {
     personBox.textContent = person.name;
     node.appendChild(personBox);
 
-    // SPOUSE CONNECTOR
-    if (person.spouses.length > 0) {
+    // SPOUSES
+    if (person.spouses && person.spouses.length > 0) {
       const spouseContainer = document.createElement("div");
       spouseContainer.className = "spouse-container";
 
@@ -39,7 +39,9 @@ function display(branch) {
     }
 
     // CHILDREN
-    if (person.children.length > 0) {
+    if (person.children && person.children.length > 0) {
+      node.classList.add("has-children");
+
       const childrenContainer = document.createElement("div");
       childrenContainer.className = "children";
 
@@ -56,20 +58,20 @@ function display(branch) {
     return node;
   }
 
-  // Top-level people (those with no parents)
-  const roots = filtered.filter(p => p.parents.length === 0);
+  // Top-level people (no parents)
+  const roots = filtered.filter(p => !p.parents || p.parents.length === 0);
 
   roots.forEach(root => {
     container.appendChild(createNode(root));
   });
 }
 
-// Filter button logic
+// Filter buttons
 document.querySelectorAll("#branch-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
     display(btn.dataset.branch);
   });
 });
 
-// Default view
+// Default
 display("All");
