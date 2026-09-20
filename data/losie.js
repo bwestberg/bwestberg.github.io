@@ -1,6 +1,8 @@
 export const losie = [
 
-  // LOSIE ROOT LINE
+  // ---------------------------------------------------------
+  // GEORGE LEO LOSIE + ESTHER ALICE BEARSS (ROOT GENERATION)
+  // ---------------------------------------------------------
   {
     id: "george-leo-losie",
     name: "George Leo Losie",
@@ -17,7 +19,8 @@ export const losie = [
       "ellen-a-losie",
       "elon-albert-losie",
       "earl-judson-losie"
-    ]
+    ],
+    details: "Born Jun 18, 1828 — Ontario, Canada • Died 1880 — Huron City, MI"
   },
 
   {
@@ -36,9 +39,13 @@ export const losie = [
       "ellen-a-losie",
       "elon-albert-losie",
       "earl-judson-losie"
-    ]
+    ],
+    details: "Born Aug 1, 1830 — Ontario • Died Jun 1, 1918 — Boon, Wexford, MI"
   },
 
+  // ---------------------------------------------------------
+  // EARL JUDSON LOSIE + ETHEL M. WOOD (MAIN LINE)
+  // ---------------------------------------------------------
   {
     id: "earl-judson-losie",
     name: "Earl Judson Losie",
@@ -50,7 +57,8 @@ export const losie = [
       "george-malcom-losie",
       "charles-ferris-losie",
       "james-elon-losie"
-    ]
+    ],
+    details: "Born May 7, 1867 — Big Rapids, MI • Died Nov 22, 1938 — Plymouth, MI"
   },
 
   {
@@ -64,17 +72,21 @@ export const losie = [
       "george-malcom-losie",
       "charles-ferris-losie",
       "james-elon-losie"
-    ]
+    ],
+    details: "Born Mar 4, 1878 — Salem, IN • Died Apr 2, 1933 — Detroit, MI"
   },
 
+  // ---------------------------------------------------------
   // CHILDREN OF EARL & ETHEL
+  // ---------------------------------------------------------
   {
     id: "earl-judson-losie-jr",
     name: "Earl Judson Losie Jr.",
     branch: "Losie",
     parents: ["earl-judson-losie", "ethel-m-wood"],
     spouses: ["ellen-losie", "joan-t-szczepanski"],
-    children: []
+    children: [],
+    details: "Born Jan 9, 1912 — Big Rapids, MI • Died May 30, 2007 — Tucker, GA"
   },
 
   {
@@ -83,7 +95,8 @@ export const losie = [
     branch: "Losie",
     parents: [],
     spouses: ["earl-judson-losie-jr"],
-    children: []
+    children: [],
+    details: "Married Dec 30, 1933"
   },
 
   {
@@ -92,7 +105,8 @@ export const losie = [
     branch: "Szczepanski",
     parents: [],
     spouses: ["earl-judson-losie-jr"],
-    children: []
+    children: [],
+    details: "Married Jul 4, 1946"
   },
 
   {
@@ -101,7 +115,8 @@ export const losie = [
     branch: "Losie",
     parents: ["earl-judson-losie", "ethel-m-wood"],
     spouses: ["dorothy-lucille-schwartz"],
-    children: []
+    children: [],
+    details: "Born Aug 25, 1913 — Big Rapids, MI • Died Feb 19, 2006 — Ann Arbor, MI"
   },
 
   {
@@ -110,7 +125,8 @@ export const losie = [
     branch: "Schwartz",
     parents: [],
     spouses: ["george-malcom-losie"],
-    children: []
+    children: [],
+    details: "Married Oct 16, 1936"
   },
 
   {
@@ -119,7 +135,8 @@ export const losie = [
     branch: "Losie",
     parents: ["earl-judson-losie", "ethel-m-wood"],
     spouses: ["betty-mae-bruner"],
-    children: []
+    children: [],
+    details: "Born Jun 20, 1915 — Big Rapids, MI • Died Apr 28, 2005 — Salem, OR"
   },
 
   {
@@ -128,7 +145,8 @@ export const losie = [
     branch: "Bruner",
     parents: [],
     spouses: ["charles-ferris-losie"],
-    children: []
+    children: [],
+    details: "Married Jul 25, 1942"
   },
 
   {
@@ -137,7 +155,8 @@ export const losie = [
     branch: "Losie",
     parents: ["earl-judson-losie", "ethel-m-wood"],
     spouses: ["mildred-ilene-bearance"],
-    children: []
+    children: [],
+    details: "Born Apr 2, 1918 — Big Rapids, MI • Died Mar 20, 2002 — Leesburg, FL"
   },
 
   {
@@ -146,17 +165,21 @@ export const losie = [
     branch: "Bearance",
     parents: ["charlotte-anne-nicholson", "john-b-bearance"],
     spouses: ["james-elon-losie"],
-    children: []
+    children: [],
+    details: "Married Feb 25, 1939"
   },
 
-  // GEORGE LEO LOSIE SIBLINGS
+  // ---------------------------------------------------------
+  // SIBLINGS OF EARL (children of George Leo & Esther Bearss)
+  // ---------------------------------------------------------
   {
     id: "sarah-e-losie",
     name: "Sarah E. Losie",
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1854–1858"
   },
 
   {
@@ -165,7 +188,8 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1856–1858"
   },
 
   {
@@ -174,7 +198,8 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1858–1880"
   },
 
   {
@@ -183,7 +208,8 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1860–1900"
   },
 
   {
@@ -192,7 +218,8 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1862–1880"
   },
 
   {
@@ -201,7 +228,8 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1862–1930+"
   },
 
   {
@@ -210,7 +238,8 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1865–?"
   },
 
   {
@@ -219,17 +248,21 @@ export const losie = [
     branch: "Losie",
     parents: ["george-leo-losie", "esther-alice-bearss"],
     spouses: [],
-    children: []
+    children: [],
+    details: "1865–1941"
   },
 
+  // ---------------------------------------------------------
   // BEARSS / ROSZELL LINE
+  // ---------------------------------------------------------
   {
     id: "ephraim-bearss",
     name: "Ephraim Burss / Bearss",
     branch: "Bearss",
     parents: [],
     spouses: ["sarah-roszell"],
-    children: ["esther-alice-bearss"]
+    children: ["esther-alice-bearss"],
+    details: "Born Feb 1, 1805 — Ontario • Died May 19, 1878 — Allegan, MI"
   },
 
   {
@@ -238,55 +271,44 @@ export const losie = [
     branch: "Roszell",
     parents: [],
     spouses: ["ephraim-bearss"],
-    children: ["esther-alice-bearss"]
+    children: ["esther-alice-bearss"],
+    details: "Born Nov 29, 1810 — Ontario • Died Jul 8, 1895 — Glenn, MI"
   },
 
+  // ---------------------------------------------------------
   // WOOD / CASPAR LINE
+  // ---------------------------------------------------------
   {
     id: "malcom-wood",
     name: "Malcom Wood",
     branch: "Wood",
     parents: [],
     spouses: ["margaret-adeline-caspar"],
-    children: ["ethel-m-wood"]
+    children: ["ethel-m-wood"],
+    details: "Born Aug 4, 1845 — Ohio • Died Jan 10, 1934 — Boise, ID"
   },
 
   {
     id: "margaret-adeline-caspar",
-    name: "Margaret Adeline \"Addie\" Caspar",
+    name: "Margaret Adeline “Addie” Caspar",
     branch: "Caspar",
     parents: [],
     spouses: ["malcom-wood"],
-    children: ["ethel-m-wood"]
+    children: ["ethel-m-wood"],
+    details: "Born Jan 31, 1852 — Salem, IN • Died Aug 27, 1935 — Boise, ID"
   },
 
-  // WOODMAN / LAMBERTON LINE (ancestors of Wood/Caspar side)
-  {
-    id: "samuel-d-woodman",
-    name: "Samuel D. Woodman",
-    branch: "Woodman",
-    parents: [],
-    spouses: ["ruth-elizabeth-lamberton"],
-    children: []
-  },
-
-  {
-    id: "ruth-elizabeth-lamberton",
-    name: "Ruth Elizabeth Lamberton",
-    branch: "Lamberton",
-    parents: [],
-    spouses: ["samuel-d-woodman"],
-    children: []
-  },
-
-  // NICHOLSON / BEARANCE CONNECTION
+  // ---------------------------------------------------------
+  // NICHOLSON / BEARANCE LINE
+  // ---------------------------------------------------------
   {
     id: "charlotte-anne-nicholson",
     name: "Charlotte Anne Nicholson",
     branch: "Nicholson",
     parents: [],
     spouses: ["john-b-bearance"],
-    children: ["mildred-ilene-bearance"]
+    children: ["mildred-ilene-bearance"],
+    details: "Born 1858 • Died May 29, 1925"
   },
 
   {
@@ -295,62 +317,21 @@ export const losie = [
     branch: "Bearance",
     parents: [],
     spouses: ["charlotte-anne-nicholson"],
-    children: ["mildred-ilene-bearance"]
+    children: ["mildred-ilene-bearance"],
+    details: ""
   },
 
-  // DEEP LOSEE / KOECK / VANFLAESBECK / DENTON LINE (summarized)
-  {
-    id: "laurens-corneliszen-koeck",
-    name: "Laurens Corneliszen Koeck",
-    branch: "Losee",
-    parents: [],
-    spouses: ["margrietje-barents-vanflaesbeck"],
-    children: []
-  },
-
-  {
-    id: "margrietje-barents-vanflaesbeck",
-    name: "Margrietje Barents VanFlaesbeck",
-    branch: "Losee",
-    parents: [],
-    spouses: ["laurens-corneliszen-koeck"],
-    children: []
-  },
-
-  {
-    id: "laurens-losee",
-    name: "Laurens Losee",
-    branch: "Losee",
-    parents: [],
-    spouses: [],
-    children: []
-  },
-
-  {
-    id: "jan-john-l-losee",
-    name: "Jan \"John L.\" Losee",
-    branch: "Losee",
-    parents: [],
-    spouses: [],
-    children: []
-  },
-
-  {
-    id: "lawrence-losee",
-    name: "Lawrence Losee",
-    branch: "Losee",
-    parents: [],
-    spouses: [],
-    children: []
-  },
-
+  // ---------------------------------------------------------
+  // COLONIAL LOSEE LINE (SUMMARY)
+  // ---------------------------------------------------------
   {
     id: "john-wesley-losie",
     name: "John Wesley Losie",
     branch: "Losie",
     parents: [],
     spouses: ["eleanor-waite"],
-    children: ["george-leo-losie"]
+    children: ["george-leo-losie"],
+    details: "1797–1865"
   },
 
   {
@@ -359,7 +340,8 @@ export const losie = [
     branch: "Waite",
     parents: [],
     spouses: ["john-wesley-losie"],
-    children: ["george-leo-losie"]
+    children: ["george-leo-losie"],
+    details: ""
   }
 
 ];
