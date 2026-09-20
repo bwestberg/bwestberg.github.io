@@ -1,43 +1,51 @@
 import { people } from "./data/master.js";
 
-const container = document.getElementById("tree");
-const menu = document.getElementById("branch-menu");
-
-// Render a single person card
-function renderPerson(person) {
-  const div = document.createElement("div");
-  div.className = "person";
-  div.innerHTML = `
-    <h3>${person.name}</h3>
-    <p><strong>Branch:</strong> ${person.branch}</p>
-    <p><strong>Parents:</strong> ${person.parents.length ? person.parents.join(", ") : "None"}</p>
-    <p><strong>Spouses:</strong> ${person.spouses.length ? person.spouses.join(", ") : "None"}</p>
-    <p><strong>Children:</strong> ${person.children.length ? person.children.join(", ") : "None"}</p>
-  `;
-  return div;
-}
-
-// Display people by branch
 function display(branch) {
+  const container = document.getElementById("tree");
   container.innerHTML = "";
 
-  const filtered =
-    branch === "All"
-      ? people
-      : people.filter(p => p.branch === branch);
+  const filtered = branch === "All"
+    ? people
+    : people.filter(p => p.branch === branch);
 
-  filtered.forEach(person => {
-    container.appendChild(renderPerson(person));
+  const byId = Object.fromEntries(people.map(p => [p.id, p]));
+
+  function createNode(person) {
+    const node = document.createElement("div");
+    node.className = "node";
+    node.innerHTML = `<div class="person">${person.name}</div>`;
+
+    if (person.children.length > 0) {
+      const childrenContainer = document.createElement("div");
+      childrenContainer.className = "children";
+
+      person.children.forEach(childId => {
+        const child = byId[childId];
+        if (child) {
+          childrenContainer.appendChild(createNode(child));
+        }
+      });
+
+      node.appendChild(childrenContainer);
+    }
+
+    return node;
+  }
+
+  // Top-level people (those with no parents)
+  const roots = filtered.filter(p => p.parents.length === 0);
+
+  roots.forEach(root => {
+    container.appendChild(createNode(root));
   });
 }
 
+// Filter button logic
+document.querySelectorAll("#branch-menu button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    display(btn.dataset.branch);
+  });
+});
+
 // Default view
 display("All");
-
-// Branch menu click handler
-menu.addEventListener("click", event => {
-  const branch = event.target.dataset.branch;
-  if (branch) {
-    display(branch);
-  }
-});
