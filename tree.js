@@ -13,8 +13,32 @@ function display(branch) {
   function createNode(person) {
     const node = document.createElement("div");
     node.className = "node";
-    node.innerHTML = `<div class="person">${person.name}</div>`;
 
+    // Person box
+    const personBox = document.createElement("div");
+    personBox.className = "person";
+    personBox.textContent = person.name;
+    node.appendChild(personBox);
+
+    // SPOUSE CONNECTOR
+    if (person.spouses.length > 0) {
+      const spouseContainer = document.createElement("div");
+      spouseContainer.className = "spouse-container";
+
+      person.spouses.forEach(spouseId => {
+        const spouse = byId[spouseId];
+        if (spouse) {
+          const spouseBox = document.createElement("div");
+          spouseBox.className = "spouse";
+          spouseBox.textContent = spouse.name;
+          spouseContainer.appendChild(spouseBox);
+        }
+      });
+
+      node.appendChild(spouseContainer);
+    }
+
+    // CHILDREN
     if (person.children.length > 0) {
       const childrenContainer = document.createElement("div");
       childrenContainer.className = "children";
