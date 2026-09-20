@@ -1,29 +1,83 @@
-/* ====== Global Page Styling ====== */
-
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f4f4;
-  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
   padding: 20px;
-  color: #333;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 32px;
-  color: #222;
+  margin-bottom: 20px;
 }
-
-/* ====== Branch Menu ====== */
 
 #branch-menu {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 #branch-menu button {
-  background: #ffffff;
-  border: 2px solid #0077cc;
-  color: #0077cc;
-  padding: 
+  padding: 8px 14px;
+  margin: 5px;
+  border: 2px solid #444;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#branch-menu button:hover {
+  background: #ddd;
+}
+
+#tree {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Tree nodes */
+.node {
+  text-align: center;
+  position: relative;
+  padding: 10px;
+}
+
+.person {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #fff;
+  border: 2px solid #444;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Children container */
+.children {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 40px;
+  position: relative;
+}
+
+/* Vertical line from parent to children */
+.node::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #444;
+}
+
+/* Horizontal line connecting siblings */
+.children::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #444;
+}
