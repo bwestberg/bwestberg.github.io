@@ -15,5 +15,5 @@ export const roots = {
   Westberg: "oscar-westberg",
   Losie: "john-wesley-losie",
   Sawyer: "lawrence-sawyer",
-  Lakin: "daniel-lakin"
+  Lakin: "john-hayes-lakin"
 };
