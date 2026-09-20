@@ -3,6 +3,31 @@ import { people, roots } from "./data/master.js";
 let currentLayout = "vertical";
 let currentBranch = "All";
 let focusPerson = null;
+let zoomLevel = 1;
+
+const MIN_ZOOM = 0.6;
+const MAX_ZOOM = 2;
+const ZOOM_STEP = 0.1;
+
+function applyZoom() {
+  const tree = document.getElementById("tree");
+  const zoomDisplay = document.getElementById("zoom-reset");
+
+  if (!tree) {
+    return;
+  }
+
+  tree.style.transform = `scale(${zoomLevel})`;
+
+  if (zoomDisplay) {
+    zoomDisplay.textContent = `${Math.round(zoomLevel * 100)}%`;
+  }
+}
+
+function setZoom(nextZoom) {
+  zoomLevel = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, nextZoom));
+  applyZoom();
+}
 
 function display(branch) {
   currentBranch = branch;
@@ -12,12 +37,17 @@ function display(branch) {
 
   const byId = Object.fromEntries(people.map(p => [p.id, p]));
 
-  const rootId = focusPerson || roots[branch];
-  const root = byId[rootId];
+  const rootIds = focusPerson
+    ? [focusPerson]
+    : Array.isArray(roots[branch])
+      ? roots[branch]
+      : [roots[branch]];
 
-  function createVerticalNode(person) {
+  function createVerticalNode(person, path = new Set()) {
     const node = document.createElement("div");
     node.className = "vertical-node";
+    const nextPath = new Set(path);
+    nextPath.add(person.id);
 
     const block = document.createElement("div");
     block.className = "person-block";
@@ -63,8 +93,8 @@ function display(branch) {
 
       person.children.forEach(childId => {
         const child = byId[childId];
-        if (child) {
-          childrenContainer.appendChild(createVerticalNode(child));
+        if (child && !nextPath.has(child.id)) {
+          childrenContainer.appendChild(createVerticalNode(child, nextPath));
         }
       });
 
@@ -74,9 +104,11 @@ function display(branch) {
     return node;
   }
 
-  function createPedigreeNode(person) {
+  function createPedigreeNode(person, path = new Set()) {
     const node = document.createElement("div");
     node.className = "pedigree-node";
+    const nextPath = new Set(path);
+    nextPath.add(person.id);
 
     const personBox = document.createElement("div");
     personBox.className = "person";
@@ -92,14 +124,31 @@ function display(branch) {
 
     node.appendChild(personBox);
 
+    if (person.spouses?.length > 0) {
+      const spouseContainer = document.createElement("div");
+      spouseContainer.className = "spouse-container";
+
+      person.spouses.forEach(spouseId => {
+        const spouse = byId[spouseId];
+        if (spouse) {
+          const spouseBox = document.createElement("div");
+          spouseBox.className = "spouse";
+          spouseBox.textContent = spouse.name;
+          spouseContainer.appendChild(spouseBox);
+        }
+      });
+
+      node.appendChild(spouseContainer);
+    }
+
     if (person.parents?.length > 0) {
       const parentContainer = document.createElement("div");
       parentContainer.className = "pedigree-parents";
 
       person.parents.forEach(parentId => {
         const parent = byId[parentId];
-        if (parent) {
-          parentContainer.appendChild(createPedigreeNode(parent));
+        if (parent && !nextPath.has(parent.id)) {
+          parentContainer.appendChild(createPedigreeNode(parent, nextPath));
         }
       });
 
@@ -112,8 +161,8 @@ function display(branch) {
 
       person.children.forEach(childId => {
         const child = byId[childId];
-        if (child) {
-          childContainer.appendChild(createPedigreeNode(child));
+        if (child && !nextPath.has(child.id)) {
+          childContainer.appendChild(createPedigreeNode(child, nextPath));
         }
       });
 
@@ -123,12 +172,44 @@ function display(branch) {
     return node;
   }
 
-  if (currentLayout === "vertical") {
-    container.appendChild(createVerticalNode(root));
-  } else {
-    container.appendChild(createPedigreeNode(root));
-  }
+  rootIds.forEach(rootId => {
+    const root = byId[rootId];
+
+    if (!root) {
+      return;
+    }
+
+    if (currentLayout === "vertical") {
+      container.appendChild(createVerticalNode(root));
+    } else {
+      container.appendChild(createPedigreeNode(root));
+    }
+  });
+
+  applyZoom();
 }
+
+document.getElementById("zoom-in").addEventListener("click", () => {
+  setZoom(zoomLevel + ZOOM_STEP);
+});
+
+document.getElementById("zoom-out").addEventListener("click", () => {
+  setZoom(zoomLevel - ZOOM_STEP);
+});
+
+document.getElementById("zoom-reset").addEventListener("click", () => {
+  setZoom(1);
+});
+
+document.getElementById("tree-viewport").addEventListener("wheel", (event) => {
+  if (!event.ctrlKey && !event.metaKey) {
+    return;
+  }
+
+  event.preventDefault();
+  const delta = event.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP;
+  setZoom(zoomLevel + delta);
+}, { passive: false });
 
 document.querySelectorAll("#branch-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
