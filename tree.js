@@ -14,14 +14,19 @@ function display(branch) {
     const node = document.createElement("div");
     node.className = "node";
 
-    // Person box
+    // Person box (click to collapse/expand)
     const personBox = document.createElement("div");
     personBox.className = "person";
     personBox.textContent = person.name;
+
+    personBox.addEventListener("click", () => {
+      node.classList.toggle("collapsed");
+    });
+
     node.appendChild(personBox);
 
     // SPOUSES
-    if (person.spouses && person.spouses.length > 0) {
+    if (person.spouses?.length > 0) {
       const spouseContainer = document.createElement("div");
       spouseContainer.className = "spouse-container";
 
@@ -39,7 +44,7 @@ function display(branch) {
     }
 
     // CHILDREN
-    if (person.children && person.children.length > 0) {
+    if (person.children?.length > 0) {
       node.classList.add("has-children");
 
       const childrenContainer = document.createElement("div");
