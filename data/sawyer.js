@@ -1,9 +1,9 @@
 export const sawyer = [
-  // Brown / Chase ancestry
   {
     id: "fred-brown",
     name: "Fred E. Brown (1861–1917)",
     branch: "Brown",
+    details: "",
     parents: [],
     spouses: [],
     children: ["harry-brown"]
@@ -12,6 +12,7 @@ export const sawyer = [
     id: "harry-brown",
     name: "Harry Leroy Brown (1885–1939)",
     branch: "Brown",
+    details: "",
     parents: ["fred-brown"],
     spouses: ["edna-chase"],
     children: ["cleda-brown"]
@@ -20,6 +21,7 @@ export const sawyer = [
     id: "edna-chase",
     name: "Edna E. Chase (1889–1957)",
     branch: "Brown",
+    details: "",
     parents: [],
     spouses: ["harry-brown"],
     children: ["cleda-brown"]
@@ -28,26 +30,25 @@ export const sawyer = [
     id: "cleda-brown",
     name: "Cleda Lucille Brown (1916–1988)",
     branch: "Brown",
+    details: "",
     parents: ["harry-brown", "edna-chase"],
     spouses: ["lawrence-sawyer"],
     children: ["carol-sawyer", "constance-sawyer", "becky-sawyer", "noel-sawyer", "tom-sawyer"]
   },
-
-  // Sawyer parents
   {
     id: "lawrence-sawyer",
     name: "Lawrence Sawyer",
     branch: "Sawyer",
+    details: "",
     parents: [],
     spouses: ["cleda-brown"],
     children: ["carol-sawyer", "constance-sawyer", "becky-sawyer", "noel-sawyer", "tom-sawyer"]
   },
-
-  // Carol + siblings
   {
     id: "carol-sawyer",
     name: "Carol Ann Sawyer (1937–2016)",
     branch: "Sawyer",
+    details: "",
     parents: ["lawrence-sawyer", "cleda-brown"],
     spouses: ["roger-lakin"],
     children: ["cheri-lakin", "tim-lakin"]
@@ -56,6 +57,7 @@ export const sawyer = [
     id: "constance-sawyer",
     name: "Constance (Sawyer) Bennett",
     branch: "Sawyer",
+    details: "",
     parents: ["lawrence-sawyer", "cleda-brown"],
     spouses: ["tony-bennett"],
     children: ["denny-bennett", "greg-bennett", "kelly-bennett", "jeff-bennett"]
@@ -64,6 +66,7 @@ export const sawyer = [
     id: "tony-bennett",
     name: "Tony Bennett",
     branch: "Sawyer",
+    details: "",
     parents: [],
     spouses: ["constance-sawyer"],
     children: ["denny-bennett", "greg-bennett", "kelly-bennett", "jeff-bennett"]
@@ -72,6 +75,7 @@ export const sawyer = [
     id: "denny-bennett",
     name: "Denny Bennett",
     branch: "Sawyer",
+    details: "",
     parents: ["constance-sawyer", "tony-bennett"],
     spouses: [],
     children: []
@@ -80,6 +84,7 @@ export const sawyer = [
     id: "greg-bennett",
     name: "Greg Bennett",
     branch: "Sawyer",
+    details: "",
     parents: ["constance-sawyer", "tony-bennett"],
     spouses: [],
     children: []
@@ -88,6 +93,7 @@ export const sawyer = [
     id: "kelly-bennett",
     name: "Kelly Bennett",
     branch: "Sawyer",
+    details: "",
     parents: ["constance-sawyer", "tony-bennett"],
     spouses: [],
     children: []
@@ -96,15 +102,16 @@ export const sawyer = [
     id: "jeff-bennett",
     name: "Jeff Bennett",
     branch: "Sawyer",
+    details: "",
     parents: ["constance-sawyer", "tony-bennett"],
     spouses: [],
     children: []
   },
-
   {
     id: "becky-sawyer",
     name: "Becky (Sawyer) Sims",
     branch: "Sawyer",
+    details: "",
     parents: ["lawrence-sawyer", "cleda-brown"],
     spouses: ["tod-sims"],
     children: ["richard-sims-1", "ron-sims", "robin-sims", "randy-sims", "richard-sims-2"]
@@ -113,6 +120,7 @@ export const sawyer = [
     id: "tod-sims",
     name: "Tod Sims",
     branch: "Sawyer",
+    details: "",
     parents: [],
     spouses: ["becky-sawyer"],
     children: ["richard-sims-1", "ron-sims", "robin-sims", "randy-sims", "richard-sims-2"]
@@ -121,6 +129,7 @@ export const sawyer = [
     id: "richard-sims-1",
     name: "Richard Sims",
     branch: "Sawyer",
+    details: "",
     parents: ["becky-sawyer", "tod-sims"],
     spouses: [],
     children: []
@@ -129,6 +138,7 @@ export const sawyer = [
     id: "ron-sims",
     name: "Ron Sims",
     branch: "Sawyer",
+    details: "",
     parents: ["becky-sawyer", "tod-sims"],
     spouses: [],
     children: []
@@ -137,6 +147,7 @@ export const sawyer = [
     id: "robin-sims",
     name: "Robin Sims",
     branch: "Sawyer",
+    details: "",
     parents: ["becky-sawyer", "tod-sims"],
     spouses: [],
     children: []
@@ -145,6 +156,7 @@ export const sawyer = [
     id: "randy-sims",
     name: "Randy Sims",
     branch: "Sawyer",
+    details: "",
     parents: ["becky-sawyer", "tod-sims"],
     spouses: [],
     children: []
@@ -153,15 +165,16 @@ export const sawyer = [
     id: "richard-sims-2",
     name: "Richard Sims (second)",
     branch: "Sawyer",
+    details: "",
     parents: ["becky-sawyer", "tod-sims"],
     spouses: [],
     children: []
   },
-
   {
     id: "noel-sawyer",
     name: "Noel (Sawyer) Babbitt",
     branch: "Sawyer",
+    details: "",
     parents: ["lawrence-sawyer", "cleda-brown"],
     spouses: ["mr-babbitt"],
     children: ["dan-babbitt", "darren-babbitt"]
@@ -170,6 +183,7 @@ export const sawyer = [
     id: "mr-babbitt",
     name: "Mr. Babbitt",
     branch: "Sawyer",
+    details: "",
     parents: [],
     spouses: ["noel-sawyer"],
     children: ["dan-babbitt", "darren-babbitt"]
@@ -178,6 +192,7 @@ export const sawyer = [
     id: "dan-babbitt",
     name: "Dan Babbitt",
     branch: "Sawyer",
+    details: "",
     parents: ["noel-sawyer", "mr-babbitt"],
     spouses: [],
     children: []
@@ -186,15 +201,16 @@ export const sawyer = [
     id: "darren-babbitt",
     name: "Darren Babbitt",
     branch: "Sawyer",
+    details: "",
     parents: ["noel-sawyer", "mr-babbitt"],
     spouses: [],
     children: []
   },
-
   {
     id: "tom-sawyer",
     name: "Tom Sawyer",
     branch: "Sawyer",
+    details: "",
     parents: ["lawrence-sawyer", "cleda-brown"],
     spouses: ["debbie-sawyer"],
     children: ["heidi-sawyer", "trevor-sawyer"]
@@ -203,6 +219,7 @@ export const sawyer = [
     id: "debbie-sawyer",
     name: "Debbie Sawyer",
     branch: "Sawyer",
+    details: "",
     parents: [],
     spouses: ["tom-sawyer"],
     children: ["heidi-sawyer", "trevor-sawyer"]
@@ -211,6 +228,7 @@ export const sawyer = [
     id: "heidi-sawyer",
     name: "Heidi Sawyer",
     branch: "Sawyer",
+    details: "",
     parents: ["tom-sawyer", "debbie-sawyer"],
     spouses: [],
     children: []
@@ -219,6 +237,7 @@ export const sawyer = [
     id: "trevor-sawyer",
     name: "Trevor Sawyer",
     branch: "Sawyer",
+    details: "",
     parents: ["tom-sawyer", "debbie-sawyer"],
     spouses: [],
     children: []
