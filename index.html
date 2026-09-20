@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Family Tree</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <h1>Family Tree</h1>
 
+  <!-- Branch Filter Menu -->
   <div id="branch-menu">
     <button data-branch="All">All</button>
     <button data-branch="Westberg">Westberg</button>
@@ -16,8 +19,11 @@
     <button data-branch="Sawyer">Sawyer</button>
   </div>
 
+  <!-- Tree Display Container -->
   <div id="tree"></div>
 
+  <!-- Load Tree Logic -->
   <script type="module" src="tree.js"></script>
+
 </body>
 </html>
